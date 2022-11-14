@@ -6,6 +6,7 @@ import com.example.airport.data.model.RunwayEntity;
 import com.example.airport.data.repository.AirportRepository;
 import com.example.airport.data.repository.CountryRepository;
 import com.example.airport.data.repository.RunwayRepository;
+import com.example.airport.service.DataRetrievalService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -29,6 +30,9 @@ public class PopulateDatabaseTest {
     @Autowired
     AirportRepository airportRepository;
 
+    @Autowired
+    DataRetrievalService dataRetrievalService;
+
     @Test
     public void onApplicationEventTest(){
         populateDatabase.onApplicationEvent(null);
@@ -42,6 +46,8 @@ public class PopulateDatabaseTest {
 
         final List<AirportEntity> airportEntities = airportRepository.findAll();
         assertNotNull(airportEntities);
+
+        dataRetrievalService.retrieveRunwaysVyCountryCodeOrName("AO",null);
 
     }
 }

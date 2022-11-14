@@ -1,7 +1,7 @@
 package com.example.airport.component.reader;
 
 import com.example.airport.exception.InputDataReadException;
-import com.example.airport.service.CsvReader;
+import com.example.airport.service.CSVReaderService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -15,14 +15,14 @@ import java.util.stream.IntStream;
 public abstract class InputReader<T> {
 
     @Autowired
-    CsvReader csvReader;
+    CSVReaderService csvReaderService;
     private Map<String, Integer> keyToIndexMap;
     private String[] records;
 
     public List<T> processInput(final Path path) {
         try {
             if (path != null) {
-                final List<String[]> countryRecords = csvReader.readAllLines(path);
+                final List<String[]> countryRecords = csvReaderService.readAllLines(path);
                 return buildEntities(countryRecords);
             } else {
                 log.warn("Provided path of input file is null");

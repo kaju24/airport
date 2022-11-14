@@ -1,8 +1,6 @@
 package com.example.airport.data.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -14,6 +12,8 @@ import java.util.Set;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor(force = true)
+@Getter
+@Setter
 public class AirportEntity implements Serializable {
 
     @Id

@@ -38,7 +38,7 @@ public class CountryEntity implements Serializable {
     private String keywords;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "country")
-    private Set<AirportEntity> airports = new HashSet<>(0);
+    private Set<AirportEntity> airports;
 
 }
 
