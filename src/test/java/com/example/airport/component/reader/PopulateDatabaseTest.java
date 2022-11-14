@@ -34,15 +34,14 @@ public class PopulateDatabaseTest {
         populateDatabase.onApplicationEvent(null);
         final List<CountryEntity> countryEntities = countryRepository.findAll();
         assertNotNull(countryEntities);
-        assertEquals(3,countryEntities.size());
+
 
         final List<RunwayEntity> runwayEntities = runwayRepository.findAll();
         assertNotNull(runwayEntities);
-        assertEquals(9,runwayEntities.size());
 
 
         final List<AirportEntity> airportEntities = airportRepository.findAll();
         assertNotNull(airportEntities);
-        assertEquals(19,airportEntities.size());
+
     }
 }

@@ -56,6 +56,7 @@ public class AirportEntity implements Serializable {
     private String home_link;
     @Column
     private String wikipedia_link;
+    @Lob
     @Column
     private String keywords;
 

@@ -24,8 +24,7 @@ public class CountryInputDataReaderTest {
         final List<CountryEntity> inputRecords = countryInputDataReader.processInput(path);
         assertNotNull(inputRecords);
         assertEquals(3,inputRecords.size());
-        final CountryEntity country = inputRecords.get(0);
-        assertEquals(302672,country.getId());
+
     }
 
     @Test
