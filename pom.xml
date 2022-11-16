@@ -57,6 +57,13 @@
 			<artifactId>opencsv</artifactId>
 			<version>${opencsv.version}</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-search-orm</artifactId>
+			<version>5.11.11.Final</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>

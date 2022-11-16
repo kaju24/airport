@@ -24,7 +24,6 @@ public class AirportEntity implements Serializable {
     @JoinColumn(name = "country_code")
     private CountryEntity country;
 
-
     @Column
     private String identity;
     @Column

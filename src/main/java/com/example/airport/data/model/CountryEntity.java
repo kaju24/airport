@@ -1,13 +1,15 @@
 package com.example.airport.data.model;
 
-
+import org.hibernate.search.annotations.*;
 import lombok.*;
+
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+@Indexed
 @Entity
 @Table(name = "countries")
 @Getter
@@ -22,9 +24,11 @@ public class CountryEntity implements Serializable {
     @Column(name = "id", unique = true, nullable = false)
     private Long id;
 
+    @Field(termVector = TermVector.YES)
     @Column(name = "code")
     private String code;
 
+    @Field(termVector = TermVector.YES)
     @Column(name = "name")
     private String name;
 

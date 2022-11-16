@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <#-- @ftlvariable name="runway" type="com.example.airport.data.model.RunwayEntity" -->
+<#-- @ftlvariable name="country" type="com.example.airport.data.model.CountryEntity" -->
 <head>
     <title>Airport</title>
     <link rel="stylesheet" href="resources/css/orbit-randstad.css">
@@ -27,6 +28,44 @@
 <!-- Real life metrics / monitoring -->
 <div class="bg-variant-brand-tertiary" style="padding-bottom: 50px">
     <body>
+
+
+    <div>
+        <form method="get" action="/countries">
+            <div>
+                <label>Top 10 Countries</label>
+
+                <div>
+                    <#if countries??>
+                        <#list countries as country>
+                            <div>${country.name!''}</div>
+                        </#list>
+                    </#if>
+                </div>
+
+
+                <div>
+                    <input type="submit" value="Submit"/>
+                </div>
+
+            </div>
+        </form>
+    </div>
+
+
+    <div/>
+    <div/>
+    <div/>
+    <div/>
+    <div/>
+    <div/>
+    <div/>
+    <div/>
+
+    <div/>
+    <div/>
+    ================================================================================================
+
     <div>
         <form method="get" action="/test">
             <div>
@@ -53,10 +92,55 @@
     <div>
         <#if runways??>
             <#list runways as runway>
-                <div>${runway.id?string!''}</div>
+                <div>${runway.id!''}</div>
             </#list>
         </#if>
     </div>
+
+
+     <div/>
+     <div/>
+     <div/>
+     <div/>
+     <div/>
+     <div/>
+     <div/>
+     <div/>
+
+    <div/>
+    <div/>
+================================================================================================
+    <div/>
+    <div/>
+
+    <div>
+        <div>
+            <#if countriesFuzzy??>
+                <#list countriesFuzzy as country>
+                    <div>${country.name!''}</div>
+                </#list>
+            </#if>
+        </div>
+    </div>
+
+    <div>
+        <form method="get" action="/search">
+            <div>
+
+                <label>Name keyword</label>
+
+                <div>
+                    <input id="keyword" name="keyword"/>
+                </div>
+
+                <div>
+                    <input type="submit" value="Submit"/>
+                </div>
+
+            </div>
+        </form>
+    </div>
+
 
     </body>
 </div>
