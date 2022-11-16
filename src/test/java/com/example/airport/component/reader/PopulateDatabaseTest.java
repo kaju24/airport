@@ -47,7 +47,7 @@ public class PopulateDatabaseTest {
         final List<AirportEntity> airportEntities = airportRepository.findAll();
         assertNotNull(airportEntities);
 
-        dataRetrievalService.retrieveRunwaysVyCountryCodeOrName("AO",null);
+        dataRetrievalService.retrieveRunwaysByCountryCodeOrName("AO",null);
 
     }
 }

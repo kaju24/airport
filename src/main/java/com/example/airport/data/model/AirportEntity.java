@@ -20,9 +20,10 @@ public class AirportEntity implements Serializable {
     @Column(name = "id", unique = true, nullable = false)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "country_id")
+    @ManyToOne(fetch = FetchType.LAZY, targetEntity = CountryEntity.class)
+    @JoinColumn(name = "country_code")
     private CountryEntity country;
+
 
     @Column
     private String identity;
@@ -38,8 +39,7 @@ public class AirportEntity implements Serializable {
     private Double elevation_ft;
     @Column
     private String continent;
-    @Column
-    private String iso_country;
+
     @Column
     private String iso_region;
     @Column
@@ -60,7 +60,7 @@ public class AirportEntity implements Serializable {
     @Column
     private String keywords;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "airport")
-    private Set<RunwayEntity> runways = new HashSet<>(0);
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "airport")
+    private Set<RunwayEntity> runways;
 
 }

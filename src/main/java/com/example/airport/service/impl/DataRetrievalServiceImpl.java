@@ -23,10 +23,11 @@ public class DataRetrievalServiceImpl implements DataRetrievalService {
     CountryRepository countryRepository;
 
     @Override
-    public Set<RunwayEntity> retrieveRunwaysVyCountryCodeOrName(final String countryCode, final String countryName){
+    public Set<RunwayEntity> retrieveRunwaysByCountryCodeOrName(final String countryCode, final String countryName){
         final CountryEntity country = countryRepository.findByCodeOrName(countryCode, countryName);
         final Set<AirportEntity> airports = country.getAirports();
         final Set<RunwayEntity> runwayEntities =  new HashSet<>();
+
         for (AirportEntity airport : airports){
             runwayEntities.addAll(airport.getRunways());
         }

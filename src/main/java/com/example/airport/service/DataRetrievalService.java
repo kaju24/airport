@@ -5,5 +5,5 @@ import com.example.airport.data.model.RunwayEntity;
 import java.util.Set;
 
 public interface DataRetrievalService {
-    Set<RunwayEntity> retrieveRunwaysVyCountryCodeOrName(String countryCode, String countryName);
+    Set<RunwayEntity> retrieveRunwaysByCountryCodeOrName(String countryCode, String countryName);
 }
