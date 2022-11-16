@@ -29,6 +29,9 @@ public class RunwayEntity implements Serializable {
     @Column(name = "width_ft")
     private Integer widthFeet;
 
+    @Column(name = "name")
+    private String name;
+
     @Column(name = "surface")
     private String surface;
 

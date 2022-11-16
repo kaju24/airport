@@ -1,0 +1,99 @@
+/*
+*
+* Toggle switch input styling, as this is not in orbit multi-brand theme,
+* but needed to present feature-toggle switches.
+*
+*/
+.toggle-switch{
+    position: relative;
+    display: inline-block;
+    width: 180px;
+    height: 60px;
+    margin: 10px 0 0;
+}
+
+.toggle-switch__slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transition: .4s ease;
+}
+
+.toggle-switch__slider--round{
+    border-radius: 4px;
+}
+
+.toggle-switch__slider--round:before{
+    border-radius: 2px;
+}
+
+.toggle-switch__slider:before{
+    position: absolute;
+    height: 52px;
+    text-transform: lowercase;
+    width: 84px;
+    left: 4px;
+    bottom: 4px;
+    transition: .4s;
+    font-size: 18px;
+    line-height: 30px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/** 'off/disabled' slider **/
+.toggle-switch.off > .toggle-switch__slider{
+    background-color: #f24747;
+}
+
+.toggle-switch.off > .toggle-switch__slider:before{
+    content: "off";
+    background-color: #fff;
+    color: #f24747;
+    transform: translateX(88px);
+}
+
+
+/** 'on/enabled' slider **/
+.toggle-switch.on > .toggle-switch__slider{
+    background-color: #31aa74;
+}
+
+.toggle-switch.on > .toggle-switch__slider:before{
+    content: "enabled";
+    background-color: #fff;
+    color: #31aa74;
+    transform: translateX(0px);
+}
+
+
+/** small toggle **/
+.toggle-switch.small {
+    width: 150px;
+    height: 40px;
+}
+
+.toggle-switch.small > .toggle-switch__slider:before{
+    height: 32px;
+    text-transform: lowercase;
+    width: 64px;
+    left: 4px;
+    bottom: 4px;
+    transition: .4s;
+    font-size: 14px;
+    transform: translateX(77px);
+    line-height: 20px;
+}
+
+.toggle-switch.small.on > .toggle-switch__slider:before{
+    transform: translateX(0px);
+}
+
+.toggle-switch.small.off > .toggle-switch__slider:before{
+    transform: translateX(77px);
+}
+

@@ -8,6 +8,7 @@ import com.example.airport.service.DataRetrievalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -23,15 +24,22 @@ public class DataRetrievalServiceImpl implements DataRetrievalService {
     CountryRepository countryRepository;
 
     @Override
-    public Set<RunwayEntity> retrieveRunwaysByCountryCodeOrName(final String countryCode, final String countryName){
+    public Set<RunwayEntity> retrieveRunwaysByCountryCodeOrName(final String countryCode, final String countryName) {
         final CountryEntity country = countryRepository.findByCodeOrName(countryCode, countryName);
-        final Set<AirportEntity> airports = country.getAirports();
-        final Set<RunwayEntity> runwayEntities =  new HashSet<>();
+        final Set<RunwayEntity> runwayEntities = new HashSet<>();
+        if (country != null) {
+            final Set<AirportEntity> airports = country.getAirports();
 
-        for (AirportEntity airport : airports){
-            runwayEntities.addAll(airport.getRunways());
+            if (!CollectionUtils.isEmpty(airports)) {
+                for (AirportEntity airport : airports) {
+                    runwayEntities.addAll(airport.getRunways());
+                }
+            }
+
         }
         return runwayEntities;
     }
+
+
 
 }

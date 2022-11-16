@@ -35,6 +35,7 @@ public class AirportInputDataReader extends InputReader<AirportEntity> {
                             AirportEntity airportEntity = AirportEntity.builder().
                                     id(getLongValueByKey("id"))
                                     .country(findCountry(getValueByKey("iso_country")))
+                                    .name(getValueByKey("name"))
                                     .identity(getValueByKey("ident"))
                                     .type(getValueByKey("type"))
                                     .name(getValueByKey("name"))

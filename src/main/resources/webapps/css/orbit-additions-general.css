@@ -1,0 +1,44 @@
+.mute-all{
+    opacity: 0.4;
+}
+
+.mute-all * {
+    pointer-events: none;
+}
+
+.mute-all .toggle-switch__slider{
+    background-color: #d7d7d7 !important;
+}
+
+.mute-all .toggle-switch__slider:before{
+    color: #6c738d !important;
+}
+
+.hide-all{
+    display: none;
+    visibility: hidden;
+}
+
+
+.feature-toggles .card--extra-small{
+    border: none;
+}
+
+.feature-toggles .card--extra-small:hover{
+    border: none;
+    transition: none;
+    -webkit-transition: none;
+}
+
+
+.feature-toggles .cards__item{
+    border: none;
+}
+
+.feature-toggles .cards__item:hover{
+    border: none;
+    transition: none;
+    -webkit-transition: none;
+}
+
+

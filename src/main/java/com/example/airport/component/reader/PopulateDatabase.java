@@ -72,6 +72,8 @@ public class PopulateDatabase implements ApplicationListener<ApplicationReadyEve
         final List<RunwayEntity> runwayEntities = runwayInputDataReader.processInput(Paths.get(runwayCsv.getURI()));
         runwayRepository.saveAll(runwayEntities);
         log.info("Loading runways completed");
+
+        log.info("Application is ready to access");
     }
 
     /**
