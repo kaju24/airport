@@ -1,149 +1,166 @@
-<#ftl output_format="HTML"/>
-
-<!DOCTYPE html>
-<html lang="en">
-<#-- @ftlvariable name="runway" type="com.example.airport.data.model.RunwayEntity" -->
-<#-- @ftlvariable name="country" type="com.example.airport.data.model.CountryEntity" -->
 <head>
-    <title>Airport</title>
-    <link rel="stylesheet" href="resources/css/orbit-randstad.css">
-    <link rel="stylesheet" href="resources/css/tailwind.css">
-    <link rel="stylesheet" href="resources/css/variables.css">
-    <link rel="stylesheet" href="resources/css/orbit-additions-switch.css">
-    <link rel="stylesheet" href="resources/css/orbit-additions-general.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+
+    <title>Airport Assesment</title>
+
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="resources/dist/css/bootstrap.min.css">
+    <#--<link href="${dist/css/bootstrap.min.css}" rel="stylesheet">-->
+
+    <!-- Custom styles for this template -->
+    <#-- <link href="jumbotron.css" rel="stylesheet">-->
 </head>
 
-<body>
+<body data-new-gr-c-s-check-loaded="14.1087.0" data-gr-ext-installed="">
 
-<header class="header header--text header--compact bg-variant-brand-tertiary">
-    <div class="header__wrapper wrapper">
-        <div class="header__content header__content--full-width content-block">
-            <h1 class="content-block__title">
-                Airport Assessment
-            </h1>
+
+<main>
+
+
+    <div class="container bg-light my-2">
+        <div class="bd-example-row">
+            <h1 class="display-3">Airport Assessment!</h1>
+            <p>This is the page to experience airport assessment resul in action</p>
         </div>
     </div>
-</header>
+    <hr>
+    <div class="container">
+        <!-- Example row of columns -->
+        <div class="row">
+            <div class="col-md-4 border-right">
 
-<!-- Real life metrics / monitoring -->
-<div class="bg-variant-brand-tertiary" style="padding-bottom: 50px">
-    <body>
+                <h2>Search Runways</h2>
+                <p>Runways for each airport given a country code or country name. </p>
+
+                <form method="get" action="/airport">
+                    <div class="form-row align-items-center">
+                        <div class="col-auto">
+                            <input type="text" class="form-control mb-2" id="name" name="name"
+                                   placeholder="country name">
+                        </div>
+                        <div class="col-auto">
+                            <input type="text" class="form-control mb-2" id="code" name="code"
+                                   placeholder="country code">
+                        </div>
+                        <div class="col-auto">
+                            <button type="submit" class="btn btn-primary mb-2">Submit</button>
+                        </div>
+                    </div>
+                </form>
 
 
-    <div>
-        <form method="get" action="/countries">
-            <div>
-                <label>Top 10 Countries</label>
+                <#if runways??>
+                    <ul class="list-group">
+
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span class="font-weight-bold">Airport name</span> &nbsp; &nbsp; &nbsp; &nbsp;<span class="font-weight-bold">Runway id</span>
+                         </li>
+                        <#list runways as runway>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                ${runway.airport.name!''}
+                                <span class="badge badge-primary badge-pill">${runway.id?c!''}</span>
+                            </li>
+                        </#list>
+
+                    </ul>
+                </#if>
+
+            </div>
+
+
+            <div class="col-md-4 border-right">
+                <h2>List Countries</h2>
+                <p>Top 10 countries with the highest number of airports.</p>
+
+
+                <form method="get" action="/countries">
+                    <div class="col-auto">
+                        <button type="submit" class="btn btn-primary mb-2">List</button>
+                    </div>
+                </form>
+
 
                 <div>
                     <#if countries??>
-                        <#list countries as country>
-                            <div>${country.name!''}</div>
-                        </#list>
+
+                        <ul class="list-group">
+
+                            <#list countries as country>
+
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    ${country.name!''}
+                                    <#-- <span class="badge badge-primary badge-pill">${runway.id?c!''}</span>-->
+                                </li>
+                            </#list>
+
+                        </ul>
+
                     </#if>
                 </div>
 
-
-                <div>
-                    <input type="submit" value="Submit"/>
-                </div>
-
             </div>
-        </form>
-    </div>
 
 
-    <div/>
-    <div/>
-    <div/>
-    <div/>
-    <div/>
-    <div/>
-    <div/>
-    <div/>
+            <div class="col-md-4">
+                <h2>Fuzzy Search Countries</h2>
+                <p>Retrieving the information given a partial/fuzzy country code/name as input parameter, e.g. entering
+                    'zimb' will result in 'Zimbabwe'.</p>
 
-    <div/>
-    <div/>
-    ================================================================================================
-
-    <div>
-        <form method="get" action="/test">
-            <div>
-
-                <label>Country Code</label>
+                <form method="get" action="/search">
+                    <div class="form-row align-items-center">
+                        <div class="col-auto">
+                            <input type="text" class="form-control mb-2" id="keyword" name="keyword"
+                                   placeholder="partial country name or code">
+                        </div>
+                        <div class="col-auto">
+                            <button type="submit" class="btn btn-primary mb-2">Submit</button>
+                        </div>
+                    </div>
+                </form>
 
                 <div>
-                    <input id="code" name="code"/>
+                    <#if countriesFuzzy??>
+
+                        <ul class="list-group">
+
+                            <#list countriesFuzzy as country>
+
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    ${country.name!''}
+                                    <#-- <span class="badge badge-primary badge-pill">${runway.id?c!''}</span>-->
+                                </li>
+                            </#list>
+
+                        </ul>
+
+                    </#if>
                 </div>
-
-                <label>Country Name</label>
-
-                <div>
-                    <input id="name" name="name"/>
-                </div>
-
-                <div>
-                    <input type="submit" value="Submit"/>
-                </div>
-
             </div>
-        </form>
-    </div>
-    <div>
-        <#if runways??>
-            <#list runways as runway>
-                <div>${runway.id!''}</div>
-            </#list>
-        </#if>
-    </div>
 
 
-     <div/>
-     <div/>
-     <div/>
-     <div/>
-     <div/>
-     <div/>
-     <div/>
-     <div/>
-
-    <div/>
-    <div/>
-================================================================================================
-    <div/>
-    <div/>
-
-    <div>
-        <div>
-            <#if countriesFuzzy??>
-                <#list countriesFuzzy as country>
-                    <div>${country.name!''}</div>
-                </#list>
-            </#if>
         </div>
-    </div>
 
-    <div>
-        <form method="get" action="/search">
-            <div>
+        <hr>
 
-                <label>Name keyword</label>
+    </div> <!-- /container -->
 
-                <div>
-                    <input id="keyword" name="keyword"/>
-                </div>
-
-                <div>
-                    <input type="submit" value="Submit"/>
-                </div>
-
-            </div>
-        </form>
-    </div>
+</main>
 
 
-    </body>
-</div>
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+
+<link rel="stylesheet" href="resources/assets/js/vendor/popper.min.js">
+<link rel="stylesheet" href="resources/dist/js/bootstrap.js">
 
 </body>
-</html>

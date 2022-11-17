@@ -17,6 +17,7 @@
 	<properties>
 		<java.version>1.8</java.version>
 		<opencsv.version>4.1</opencsv.version>
+		<hibernate-search-orm.version>5.11.11.Final</hibernate-search-orm.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -61,7 +62,7 @@
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-search-orm</artifactId>
-			<version>5.11.11.Final</version>
+			<version>${hibernate-search-orm.version}</version>
 		</dependency>
 
 	</dependencies>
