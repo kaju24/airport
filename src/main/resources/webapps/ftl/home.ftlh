@@ -25,7 +25,7 @@
     <div class="container bg-light my-2">
         <div class="bd-example-row">
             <h1 class="display-3">Airport Assessment!</h1>
-            <p>This is the page to experience airport assessment resul in action</p>
+            <p>This is the page to experience airport assessment result in action</p>
         </div>
     </div>
     <hr>
