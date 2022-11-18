@@ -72,8 +72,14 @@
                 </form>
 
 
-                <#if runways??>
+                <#if runways?has_content>
+
+
                     <ul class="list-group">
+
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span class="font-weight-bold">${runways?size} Airports found</span>
+                        </li>
 
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             <span class="font-weight-bold">Airport name</span> &nbsp; &nbsp; &nbsp; &nbsp;<span
