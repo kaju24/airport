@@ -1,4 +1,13 @@
 <head>
+    <#-- @ftlvariable name="runways" type="java.util.List" -->
+    <#-- @ftlvariable name="countries" type="java.util.List" -->
+    <#-- @ftlvariable name="runway" type="com.example.airport.data.model.RunwayEntity" -->
+    <#-- @ftlvariable name="country" type="com.example.airport.data.model.CountryEntity" -->
+    <#-- @ftlvariable name="error" type="java.lang.String" -->
+    <#-- @ftlvariable name="error_s" type="java.lang.String" -->
+    <#-- @ftlvariable name="info_s" type="java.lang.String" -->
+    <#-- @ftlvariable name="info" type="java.lang.String" -->
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -7,13 +16,10 @@
 
     <title>Airport Assessment</title>
 
-
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="resources/dist/css/bootstrap.min.css">
-    <#--<link href="${dist/css/bootstrap.min.css}" rel="stylesheet">-->
 
-    <!-- Custom styles for this template -->
-    <#-- <link href="jumbotron.css" rel="stylesheet">-->
+
 </head>
 
 <body data-new-gr-c-s-check-loaded="14.1087.0" data-gr-ext-installed="">
@@ -39,7 +45,7 @@
 
                 <#if error??>
                     <p class="text-danger">
-                       ${error}
+                        ${error}
                     </p>
                 </#if>
 
@@ -70,8 +76,9 @@
                     <ul class="list-group">
 
                         <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <span class="font-weight-bold">Airport name</span> &nbsp; &nbsp; &nbsp; &nbsp;<span class="font-weight-bold">Runway id</span>
-                         </li>
+                            <span class="font-weight-bold">Airport name</span> &nbsp; &nbsp; &nbsp; &nbsp;<span
+                                    class="font-weight-bold">Runway id</span>
+                        </li>
                         <#list runways as runway>
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                 ${runway.airport.name!''}
@@ -92,7 +99,7 @@
 
                 <form method="get" action="/countries">
                     <div class="col-auto">
-                        <button type="submit" class="btn btn-primary mb-2">List</button>
+                        <button type="submit" class="btn btn-primary mb-2">List Countries</button>
                     </div>
                 </form>
 
@@ -123,11 +130,21 @@
                 <p>Retrieving the information given a partial/fuzzy country code/name as input parameter, e.g. entering
                     'zimb' will result in 'Zimbabwe'.</p>
 
+                <#if error_s??>
+                    <p class="text-danger">
+                        ${error_s}
+                    </p>
+                </#if>
+
+                <#if info_s??>
+                    <p class="text-danger">
+                        ${info_s}
+                    </p>
+                </#if>
+
                 <form method="get" action="/search">
                     <div class="form-row align-items-center">
                         <div class="col-auto">
-                           <#-- <input type="text" class="form-control mb-2" id="keyword" name="keyword"
-                                   placeholder="partial country name or code">-->
 
                             <input class="form-control basicAutoComplete" type="text" id="keyword" name="keyword"
                                    autocomplete="off">
@@ -147,7 +164,6 @@
 
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
                                     ${country.name!''}
-                                    <#-- <span class="badge badge-primary badge-pill">${runway.id?c!''}</span>-->
                                 </li>
                             </#list>
 

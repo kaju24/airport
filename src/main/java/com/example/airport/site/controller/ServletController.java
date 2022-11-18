@@ -64,8 +64,19 @@ public class ServletController {
 
     @GetMapping("/search")
     public String topTenCountriesByNumberOfAirports(Model model, @RequestParam(name = "keyword", required = true) final String keyword) {
-        final List<CountryEntity> countryEntities = dataRetrievalService.fuzzySearchCountryByName(keyword);
-        model.addAttribute("countriesFuzzy", countryEntities);
+
+        if(StringUtils.isNotEmpty(keyword) && keyword.length() > 1){
+            final List<CountryEntity> countryEntities = dataRetrievalService.fuzzySearchCountryByName(keyword);
+            if(!CollectionUtils.isEmpty(countryEntities)){
+                model.addAttribute("countriesFuzzy", countryEntities);
+            }
+            else {
+                model.addAttribute("info_s", "No Record found");
+            }
+        }
+        else {
+            model.addAttribute("error_s", "keyword is empty or less than 2 alphabets");
+        }
         return HOME_PAGE;
     }
 
