@@ -37,6 +37,18 @@
                 <h2>Search Runways</h2>
                 <p>Runways for each airport given a country code or country name. </p>
 
+                <#if error??>
+                    <p class="text-danger">
+                       ${error}
+                    </p>
+                </#if>
+
+                <#if info??>
+                    <p class="text-danger">
+                        ${info}
+                    </p>
+                </#if>
+
                 <form method="get" action="/airport">
                     <div class="form-row align-items-center">
                         <div class="col-auto">
@@ -114,8 +126,11 @@
                 <form method="get" action="/search">
                     <div class="form-row align-items-center">
                         <div class="col-auto">
-                            <input type="text" class="form-control mb-2" id="keyword" name="keyword"
-                                   placeholder="partial country name or code">
+                           <#-- <input type="text" class="form-control mb-2" id="keyword" name="keyword"
+                                   placeholder="partial country name or code">-->
+
+                            <input class="form-control basicAutoComplete" type="text" id="keyword" name="keyword"
+                                   autocomplete="off">
                         </div>
                         <div class="col-auto">
                             <button type="submit" class="btn btn-primary mb-2">Submit</button>
@@ -155,12 +170,21 @@
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-<script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
 
-<link rel="stylesheet" href="resources/assets/js/vendor/popper.min.js">
-<link rel="stylesheet" href="resources/dist/js/bootstrap.js">
+<script src="resources/dist/js/jquery-3.2.1.min.js"></script>
+<script src="resources/dist/js/bootstrap.js"></script>
+<script src="resources/dist/js/bootstrap-autocomplete.min.js"></script>
 
+<script>
+    $('.basicAutoComplete').autoComplete({
+        minLength: 2,
+        resolverSettings: {
+            url: 'searchAsync',
+            queryKey: 'keyword'
+
+        }
+    });
+
+
+</script>
 </body>
