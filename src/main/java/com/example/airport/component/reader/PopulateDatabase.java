@@ -56,7 +56,7 @@ public class PopulateDatabase implements ApplicationListener<ApplicationReadyEve
     @SneakyThrows
     @Override
     public void onApplicationEvent(final ApplicationReadyEvent event) {
-        // In case of big CSV file the insert should be done in pagination, avoiding that complexity due to small size of data
+      /*  // In case of big CSV file the insert should be done in pagination, avoiding that complexity due to small size of data
         log.info("Loading country data it will take a while....");
         final List<CountryEntity> countryEntities = countryReader.processInput(countryCsv.getInputStream());
         countryRepository.saveAll(countryEntities);
@@ -72,7 +72,7 @@ public class PopulateDatabase implements ApplicationListener<ApplicationReadyEve
         final List<RunwayEntity> runwayEntities = runwayInputDataReader.processInput(runwayCsv.getInputStream());
         runwayRepository.saveAll(runwayEntities);
         log.info("Loading runways completed");
-
+*/
         log.info("Application is ready to access");
     }
 

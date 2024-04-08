@@ -1,15 +1,15 @@
 package com.example.airport.service.impl;
 
 
+import com.example.airport.data.model.AssignmentEntity;
 import com.example.airport.service.CSVReaderService;
 import com.opencsv.CSVReader;
+import com.opencsv.CSVWriter;
 import org.springframework.stereotype.Service;
 
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.nio.file.Files;
-import java.nio.file.Path;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 @Service
 public class CsvReaderServiceImpl implements CSVReaderService {
@@ -32,4 +32,31 @@ public class CsvReaderServiceImpl implements CSVReaderService {
         return null;
 
     }
+
+    @Override
+    public void writeAllLines(List<AssignmentEntity> outPutString,String filePath) throws Exception {
+        File file = new File(filePath);
+        FileWriter outputfile = new FileWriter(file,true);
+        //using custom delimiter and quote character
+        CSVWriter csvWriter = new CSVWriter(outputfile);
+        List<String[]> data = toStringArray(outPutString);
+
+       data.forEach(d -> csvWriter.writeNext(d));
+        csvWriter.close();
+    }
+
+    private static List<String[]> toStringArray(List<AssignmentEntity> emps) {
+        List<String[]> records = new ArrayList<String[]>();
+
+        // adding header record
+      //  records.add(new String[] { "local_placement_id", "global_assignment_id", "employee_number"});
+
+        Iterator<AssignmentEntity> it = emps.iterator();
+        while (it.hasNext()) {
+            AssignmentEntity assignment = (AssignmentEntity) it.next();
+            records.add(new String[] { assignment.getLocalPlacementNumber(), assignment.getGlobalAssignmentId(), assignment.getEmployeeNumber() });
+        }
+        return records;
+    }
+
 }
